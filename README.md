@@ -18,6 +18,13 @@ Additionally user can display raw-data or transposed sets of data
 **Note:** Only the first half of 2017 is considered
 
 
+### Requirements
+To run the code, the environment should be setup as follows:
+- Python 3.8.5
+- Pandas 1.1.3
+- Numpy 1.19.2
+
+
 
 ### Statistics Computed
 ###### 1 Popular times of travel (i.e., occurs most often in the start time)
