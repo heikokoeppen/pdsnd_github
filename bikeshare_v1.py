@@ -9,6 +9,7 @@ created with:
 import time
 import pandas as pd
 import numpy as np
+from tabulate import tabulate
 
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
@@ -43,7 +44,7 @@ def raw_preview(city):
     
     # while user was asked if raw data should be displayed in the get_filters() function
     # the first five lines will be displayed, before starting the loop
-    print(df.head(raw_count))
+    print(tabulate(df.iloc[np.arange(0,5)], headers ="keys"))
     
     # While-loop is true, as long as the the variable is less than the maximum number of rows
     while (raw_count < df.shape[0]):
@@ -54,7 +55,7 @@ def raw_preview(city):
             
             #increase variable to display 5 more rows
             raw_count += 5
-            print(df.head(raw_count))
+            print(tabulate(df.iloc[np.arange(0+raw_count,5+raw_count)], headers ="keys"))
             
         # Elif Statement check, if user want to break
         elif check.lower() in ('n', 'no'):
