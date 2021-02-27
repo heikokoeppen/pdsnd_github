@@ -3,6 +3,7 @@ created with:
     python 3.8.5
     pandas 1.1.3
     numpy 1.19.2
+    tabulate 0.8.9
 """
 
 
@@ -16,6 +17,33 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'washington': 'washington.csv' }
 
 
+
+def save_stat(stat, frame):
+    """
+    Save statistics to a csv-File
+
+    Parameters
+    ----------
+    stat : str
+        name of the statistic to be saved.
+        stat will be used as filename
+    frame : DataFrame
+        contains information to be saved
+
+    Returns
+    -------
+    a csv-file that is stored in the same folder as this program
+
+    """
+
+    #save dataframe in a file
+    frame.transpose().to_csv(stat+'.csv', header = None)
+    
+    #User Feedback    
+    print('done')
+    
+    
+    
 
 def raw_preview(city):
    
@@ -275,6 +303,37 @@ def time_stats(df, city, month, day):
             print('For the most popular hour, that are {} percent of all rentals considering '
                   'filter settings'.format(perc.round(2)))
             
+            #get user input to save statistics
+            while True:
+                save_data = input('\nWould you like to save your statistics?: ')
+                
+                # When User input 'y' or 'yes'
+                if save_data.lower() in ('yes', 'y'):
+                    
+                    #create a dictionary, which can be converted to Dataframe
+                    data = {'Most popular month': [popular_month],
+                            'Most popular day': [popular_day],
+                            'Most popular start hour': [popular_hour],
+                            'Tot. rentals at most pop. hour': [tot_rent_pop_hour],
+                            'Perc. of rentals at most pop. hour': [perc.round(2)]}
+                    
+                    #create dataframe
+                    frame = pd.DataFrame(data)
+                    
+                    #call function save_stat(stat, frame)
+                    save_stat('time_stats', frame)
+                    
+                    break
+                
+                # Elif Statement breaks the loop, if user input is 'n' or 'no'    
+                elif save_data.lower() in ('no', 'n'):
+                    break
+        
+                # Else Statement check if the input is not recognized
+                else:
+                    print("\nCould not recognize your input, please repeat")
+                    continue
+            
             # display filter settings
             print('\nFilter: city: {}, month: {}, day of week: {}.'
                   .format(city.title(), month.title(), day.title()))
@@ -359,6 +418,37 @@ def station_stats(df, city, month, day):
                   '\n{} used {} times.'
                   .format(pop_comb.index[0], pop_comb.values[0]))
             
+            #get user input to save statistics
+            while True:
+                save_data = input('\nWould you like to save your statistics?: ')
+                
+                # When User input 'y' or 'yes'
+                if save_data.lower() in ('yes', 'y'):
+                    
+                    #create a dictionary, which can be converted to Dataframe
+                    data = {'Most popular start station': [popular_start_station],
+                            'Tot. rentals at start station': [pop_start_station_count],
+                            'Most popular end station': [popular_end_station],
+                            'Tot. rentals at end station': [pop_end_station_count],
+                            'Most frequent comb. of start- & end station': [pop_comb.index[0]],
+                            'most frequent comb. used .. times': [pop_comb.values[0]]}
+                    
+                    #create dataframe
+                    frame = pd.DataFrame(data)
+                    
+                    #call function save_stat(stat, frame)
+                    save_stat('station_stats', frame)
+                    
+                    break
+                
+                # Elif Statement breaks the loop, if user input is 'n' or 'no'    
+                elif save_data.lower() in ('no', 'n'):
+                    break
+        
+                # Else Statement check if the input is not recognized
+                else:
+                    print("\nCould not recognize your input, please repeat")
+                    continue 
             
             print('\nFilter: city: {}, month: {}, day of week: {}.'
                   .format(city.title(), month.title(), day.title()))
@@ -452,6 +542,39 @@ def trip_duration_stats(df, city, month, day):
             # display longest travel time and shortest travel time
             print('\nMax Duration: ', max_dur)
             print('Min Duration: ', min_dur)
+            
+            #get user input to save statistics
+            while True:
+                save_data = input('\nWould you like to save your statistics?: ')
+                
+                # When User input 'y' or 'yes'
+                if save_data.lower() in ('yes', 'y'):
+                    
+                    #create a dictionary, which can be converted to Dataframe
+                    data = {'Total travel time': [total_duration],
+                            'Total rentals': [total_rentals],
+                            'mean Travel time': [trip_dur_mean],
+                            'Trips < Mean travel time': [trips_less_avg],
+                            'Trips > Mean travel time': [trips_more_avg],
+                            'Max. travel time': [max_dur],
+                            'Min. travel time': [min_dur]}
+                    
+                    #create dataframe
+                    frame = pd.DataFrame(data)
+                    
+                    #call function save_stat(stat, frame)
+                    save_stat('travel_stats', frame)
+                    
+                    break
+                
+                # Elif Statement breaks the loop, if user input is 'n' or 'no'    
+                elif save_data.lower() in ('no', 'n'):
+                    break
+        
+                # Else Statement check if the input is not recognized
+                else:
+                    print("\nCould not recognize your input, please repeat")
+                    continue            
             
              # display filter settings
             print('\nFilter: city: {}, month: {}, day of week: {}.'
