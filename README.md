@@ -23,6 +23,7 @@ To run the code, the environment should be setup as follows:
 - Python 3.8.5
 - Pandas 1.1.3
 - Numpy 1.19.2
+- Tabulate 0.8.9
 
 ### The Datasets
 Randomly selected data for the first six months of 2017 are provided for all three cities. All three of the data files contain the same core six (6) columns:
@@ -49,6 +50,8 @@ The Chicago and New York City files also have the following two columns:
 - total rentals at most popular hour
 - percentage of rentals at most popular hour
 
+**note:** This statistic can be stored on your local computer
+
 ###### 2 Popular stations and trip
 
 - most common start station
@@ -56,6 +59,8 @@ The Chicago and New York City files also have the following two columns:
 - most common end station
 - total rentals at most popular end station
 - most common trip from start to end (i.e., most frequent combination of start station and end station)
+
+**note:** This statistic can be stored on your local computer
 
 ###### 3 Trip duration
 
@@ -65,6 +70,8 @@ The Chicago and New York City files also have the following two columns:
   - number of trips with less / more duration than average travel time
 
 - longest and shortest trip duration
+
+**note:** This statistic can be stored on your local computer
 
 
 ###### 4 User info
@@ -80,6 +87,9 @@ The Chicago and New York City files also have the following two columns:
 - chicago.csv
 - new_york_city.csv
 - washington.csv
+
+### Open Topics
+Implement the ability to store User Statistics
 
 ### Credits
 Thanks to [Udacity](https://www.udacity.com/) for their well-structured Nanodegree program  
